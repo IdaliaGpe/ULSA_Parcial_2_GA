@@ -12,7 +12,7 @@ class UsuarioController extends Controller
         //nombre   Modelo
         $usuarios = Usuario::all();
         //           html reconoce este nombre
-        $argumentos['usuario'] = $usuarios;
+        $argumentos['usuarios'] = $usuarios;
         //           nombre de blade
         return view('peliculas.usuario', $argumentos);
     }
@@ -37,21 +37,33 @@ class UsuarioController extends Controller
 
     //EDITAR
     public function edit($id) {
-        $usuarios = Usuario::find($id);
-        $argumentos['usuario'] = $usuarios;
+        $usuario = Usuario::find($id);
+        $argumentos['usuario'] = $usuario;
 
-        return view('peliculas.usuario', $argumentos);
+        return view('peliculas.editusuario', $argumentos);
     } 
 
     public function update(Request $request, $id) {
-        $usuarios = Usuario::find($id);
-        $usuarios->nombre = $request->input('nombre');
+        $usuario = Usuario::find($id);
+        $usuario->nombre = $request->input('nombre');
         $foto = $request->file('foto');
         if ($foto) {
-            $usuarios->foto = $foto->hashName();
+            $usuario->foto = $foto->hashName();
             $foto->store('public/fotos');
         }
-        $usuarios->save();
+        $usuario->save();
         return redirect()->route('usuarios.edit', $id);
+    }
+
+    public function delete($id) {
+        $usuario = Usuario::find($id);
+        $argumentos['usuario'] = $usuario;
+        return view('usuarios.delete', $argumentos);
+    }
+
+    public function destroy(Request $request, $id) {
+        $usuario = Usuario::find($id);
+        $usuario->delete();
+        return redirect()->route('peliculas.usuario');
     }
 }

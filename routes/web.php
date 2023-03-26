@@ -59,7 +59,6 @@ Route::get('/historial/{id}/delete', [HistorialController::class, 'delete'])
 Route::delete('/historial/{id}', [HistorialController::class, 'destroy'])
 ->name('historial.destroy');
 
-
 //Usuarios
 Route::get('/usuario', [UsuarioController::class, 'index'])
 ->name('peliculas.usuario');
@@ -71,3 +70,7 @@ Route::get('/usuario/{id}/edit', [UsuarioController::class, 'edit'])
 ->name('usuarios.edit');
 Route::put('/usuario/{id}', [UsuarioController::class, 'update'])
 ->name(('usuarios.update'));
+Route::get('/usuario/{id}/delete', [UsuarioController::class, 'delete'])
+->name('usuarios.delete');
+Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy'])
+->name('usuarios.destroy');

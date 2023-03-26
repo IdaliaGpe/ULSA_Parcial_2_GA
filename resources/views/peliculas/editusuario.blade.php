@@ -49,7 +49,7 @@
               <div class="row ">
                   <div class="card text-white" style="border-radius: 1rem; background-color: rgb(23, 28, 44); width: 1500px; height: 600px; ">
                     <div class="container">
-                        <form action="{{route('usuarios.update', $usuarios->id)}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('usuarios.update', $usuario->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="row ">
@@ -57,8 +57,8 @@
                                         <br>
                                         <br>
                                         
-                                        @if($usuarios->foto)
-                                        <img style="width: 500px; height: 400px" src="/storage/fotos/{{$usuarios->foto}}" class="card-img-top" alt="">
+                                        @if($usuario->foto)
+                                        <img style="width: 500px; height: 400px" src="/storage/fotos/{{$usuario->foto}}" class="card-img-top" alt="">
                                         @endif
                                         <br>
                                         <br>
@@ -74,16 +74,11 @@
                 
                                         <div class="form-outline form-white mb-4 mt-2">
                                         <label class="form-label" >Nombre</label>
-                                        <input value="{{$usuarios->nombre}}" name="nombre" type="text" class="form-control form-control-lg" placeholder="Insertar nombre..."/>
+                                        <input value="{{$usuario->nombre}}" name="nombre" type="text" class="form-control form-control-lg" placeholder="Insertar nombre..."/>
                                         </div>
                                         
                                         <div>
                                             <button class="btn  px-2" style="background-color: rgb(107, 107, 151); color: #ffffff;" type=""> <a href="{{route('peliculas.usuario')}}">Cancelar</a></button>
-                                            <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST">
-                                              @csrf
-                                              @method('delete')
-                                              <button class="btn  float-end px-2" style="background-color: rgb(62, 62, 94); color: #ffffff;" type="submit">Eliminar</button>
-                                            </form>
                                             <button class="btn  float-end px-2" style="background-color: rgb(62, 62, 94); color: #ffffff;" type="submit">Guardar</button>
                                         </div>                         
                                 
@@ -92,6 +87,11 @@
                                 <br>
 
                             </div>
+                        </form>
+                        <form action="{{route('usuarios.destroy', $usuario->id)}}" method="POST">
+                          @csrf
+                          @method('delete')
+                          <button class="btn  float-end px-2" style="background-color: rgb(62, 62, 94); color: #ffffff;" type="submit">Desactivar</button>
                         </form>
                       </div>
                   </div>
